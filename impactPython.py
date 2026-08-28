@@ -10,7 +10,7 @@
 
 import pandas as pd
 import seaborn as sns 
-import matplotlib
+import matplotlib as plt
 import dash
 
 #Read the CSV
@@ -21,10 +21,9 @@ df = pd.read_csv("ai_student_impact_dataset.csv")
 #Display any empty datas
 print(df.isna().sum())
 
-
 #If there are any null rows drop them
-if df.isna.sum() > 0:
-    df.drop_na(inplace=True)
+
+df.dropna(inplace=True)
 
 #Display the value of the duplicated rows
 print(df.duplicated())
@@ -35,6 +34,9 @@ if df.duplicated == True:
 
 #We will check for the types of the data
 
-df.dtypes
+print(df.dtypes)
+#Considering the data has no data that is out of type, we will not edit the values
+
+
 
 #Since there are x columns we will clean those columns and set data as needed
