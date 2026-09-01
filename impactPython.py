@@ -1,5 +1,4 @@
 #-----------------------------------------------------------#
-#Name: Brandon Moorcroft                                    #
 #Platform: Python                                           #
 #Dataset: AI affecting students                             #
 #Group: 6                                                   #
