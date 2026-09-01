@@ -42,3 +42,36 @@ print(df.dtypes)
 
 
 #Since there are x columns we will clean those columns and set data as needed
+
+
+#Data Analysis
+###################################################################################
+
+#Basic block for mean/median/max/min which can be used for any column
+mean1 = df['Weekly_GenAI_Hours'].mean()
+median1 = df['Weekly_GenAI_Hours'].median()
+min1 = df['Weekly_GenAI_Hours'].min()
+max1 = df['Weekly_GenAI_Hours'].max()
+#In particular the above is Weekly hours spent using GenAi
+
+
+
+
+#Display groups for analysis such as burnout by year
+burnoutRiskByYear = df.groupby('Burnout_Risk_Level')['Anxiety_Level_During_Exams']
+
+print(burnoutRiskByYear)
+
+
+
+#Create visualizations of the data using the groups chosen for analysis
+sns.barplot(data=df, x='Burnout_Risk_Level', y='Anxiety_Level_During_Exams')
+plt.show() 
+
+
+
+#Interactive Dashboard
+###################################################################################
+
+#must have a filter for a categorical check
+#4 visualizations, preferrably the ones we made earlier
