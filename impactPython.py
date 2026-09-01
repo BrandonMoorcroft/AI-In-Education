@@ -23,14 +23,14 @@ print(df.isna().sum())
 
 #If there are any null rows drop them
 
-df.dropna(inplace=True)
+df = df.dropna()
 
 #Display the value of the duplicated rows
 print(df.duplicated())
 
 #If the duplicated rows exist, drop them
 if df.duplicated == True:
-    df.drop_duplicated()
+    df = df.drop_duplicated()
 
 #We will check for the types of the data
 
