@@ -18,7 +18,9 @@ df = pd.read_csv("ai_student_impact_dataset.csv")
 
 #Handle Mistakes in data
 ####################################################
+
 #Display any empty datas
+print("Empty values per column:")
 print(df.isna().sum())
 
 #If there are any null rows drop them
@@ -26,7 +28,8 @@ print(df.isna().sum())
 df = df.dropna()
 
 #Display the value of the duplicated rows
-print(df.duplicated())
+print("Duplicated rows:")
+print(df.duplicated().sum())
 
 #If the duplicated rows exist, drop them
 if df.duplicated == True:
