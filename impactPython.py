@@ -14,12 +14,12 @@ import matplotlib.pyplot as plt
 
 
 def load_data(file_path="ai_student_impact_dataset.csv"):
-    """Load the student impact dataset."""
+    #Load the student impact dataset.
     return pd.read_csv(file_path)
 
 
 def clean_data(df):
-    """Report and remove missing and duplicated rows."""
+    #Report and remove missing and duplicated rows.
 
     print("\t=== Missing Values ===")
     print(df.isna().sum())
@@ -40,7 +40,7 @@ def clean_data(df):
 
 
 def display_data_info(df):
-    """Display the dataset types and columns."""
+    #Display the dataset types and columns.
 
     print("\n\t=== Data Types ===")
     print(df.dtypes)
@@ -53,7 +53,7 @@ def display_data_info(df):
     print(f"Columns: {df.shape[1]}")
 
 def calculate_statistics(df):
-    """Calculate and display mean, median, minimum, and maximum."""
+    #Calculate and display mean, median, minimum, and maximum.
 
     numeric_df = df.select_dtypes(include="number")
 
@@ -71,45 +71,68 @@ def calculate_statistics(df):
     print("\nMaximum:")
     print(numeric_df.max())
 
+
+def feature_engineering(df):
+    #Add a feature to the data frame - specifically the difference between GPA pre and post semester
+    #Please add more if needed
+    
+    df['gpaBeforeVsAfter'] = df['Pre_Semester_GPA'] - df['Post_Semester_GPA']
+
 def plot_major_vs_gpa(df):
-    """Bar chart: Major_Category vs Average Post_Semester_GPA."""
+    #Bar chart: Major_Category vs Average Post_Semester_GPA.
+    
     data = df.groupby('Major_Category')['Post_Semester_GPA'].mean().reset_index()
-    fig = px.bar(data, x='Major_Category', y='Post_Semester_GPA',
+    fig = px.bar(data, 
+                 x='Major_Category', 
+                 y='Post_Semester_GPA',
                  title='AI Impact on Students: Major vs GPA',
                  labels={'Major_Category': 'Major', 'Post_Semester_GPA': 'Average GPA'})
     fig.show()
+    
 def plot_ai_hours_trend(df):
-    """Line chart: Weekly_GenAI_Hours distribution."""
+    #Line chart: Weekly_GenAI_Hours distribution.
+    
     data = df.groupby('Year_of_Study')['Weekly_GenAI_Hours'].mean().reset_index()
-    fig = px.line(data, x='Year_of_Study', y='Weekly_GenAI_Hours',
+    fig = px.line(data, 
+                  x='Year_of_Study', 
+                  y='Weekly_GenAI_Hours',
                   title='Average AI Usage Hours by Year of Study',
                   labels={'Year_of_Study': 'Year of Study', 'Weekly_GenAI_Hours': 'Average Hours'})
     fig.show()
 
 def plot_burnout_risk_distribution(df):
+    #Pie Chart: Burnout_Risk_Level
+    
     labels = df['Burnout_Risk_Level'].value_counts().index
     sizes = df['Burnout_Risk_Level'].value_counts().values
     colors = ['red', 'yellow', 'green']  # Custom colors for Low, Medium, High
-    fig=px.pie(labels=labels, values=sizes, color_discrete_sequence=colors,
-     title='Distribution of Burnout Risk Levels')
+    fig=px.pie(labels=labels, 
+               values=sizes, 
+               color_discrete_sequence=colors, 
+               title='Distribution of Burnout Risk Levels')
     fig.update_traces(marker=dict(line=dict(color="#FFFFFF", width=2)))
     fig.show()
     
 def plot_study_hours_spread(df):
-    """Box plot: Traditional_Study_Hours."""
-    fig = px.box(df, y='Traditional_Study_Hours', 
+    #Box plot: Traditional_Study_Hours.
+    fig = px.box(df, 
+                 y='Traditional_Study_Hours', 
                  title='Spread of Traditional Study Hours')
     fig.show()
 
 def main():
-    """Load, clean, and describe the dataset."""
+    #Main: Run Main code
 
+    #Load the dataset, check if successful
     df = load_data()
     print(f"Original dataset size: {len(df)} rows")
 
+    #Run Cleaning Functions and display information
     df = clean_data(df)
     display_data_info(df)
     calculate_statistics(df)
+
+    #Create Plots as needed
     plot_major_vs_gpa(df)
     plot_ai_hours_trend(df)
     plot_burnout_risk_distribution(df)
