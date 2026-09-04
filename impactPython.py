@@ -1,5 +1,4 @@
 #-----------------------------------------------------------#
-#Name:                                                      #
 #Platform: Python                                           #
 #Dataset: AI affecting students                             #
 #Group: 6                                                   #
