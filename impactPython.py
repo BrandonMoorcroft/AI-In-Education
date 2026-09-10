@@ -181,6 +181,8 @@ def main():
     plot_ai_hours_trend(df)
     plot_burnout_risk_distribution(df)
     plot_study_hours_spread(df)
+    plot_use_case(df)
+      
     return df
 
 if __name__ == "__main__":
