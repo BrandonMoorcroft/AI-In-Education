@@ -144,6 +144,18 @@ def plot_burnout_risk_distribution(df):
                title='Distribution of Burnout Risk Levels')
     fig.update_traces(marker=dict(line=dict(color="#FFFFFF", width=2)))
     fig.show()
+
+def plot_use_case(df):
+      #Pie Chart: Priamry use Case for AI
+      
+      labels = df['Primary_Use_Case'.value_counts().index
+      sizes = df['Primary_Use_Case'.value_counts().values
+      fig = px.pie(
+            labels=labels,
+            values=sizes,
+            title='Distribution of Use Cases')
+      fig.update_traces(marker=dict(line=dict(color="#FFFFFF",width=2)))
+      fig.show()
     
 def plot_study_hours_spread(df):
     #Box plot: Traditional_Study_Hours.
