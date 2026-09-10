@@ -10,6 +10,8 @@
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
+from AIdashboard import create_app
+
 
 
 
@@ -137,6 +139,10 @@ def main():
     plot_ai_hours_trend(df)
     plot_burnout_risk_distribution(df)
     plot_study_hours_spread(df)
+    return df
 
 if __name__ == "__main__":
-    main()
+    df = main()
+
+    app = create_app(df)
+    app.run(debug=True)
