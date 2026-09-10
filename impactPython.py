@@ -7,12 +7,41 @@
 #per csv basis. Adjusting tools as needed.                  #
 #-----------------------------------------------------------#
 
+"""
+#In a case where someone does not have the required libraries installed, uncomment this code
+import subprocess
+import sys
+
+def installRequirement(package):
+      subprocess.check_call([sys.executable, "-m", "pip", "install", package]
+
+try:
+    import pandas as pd 
+except ImportError:
+    installRequirement("pandas")
+    import pandas as pd
+
+try:
+    import plotly.express as px
+except ImportError:
+    installRequirement("plotly")
+    import plotly.express as px
+
+try:
+    import matplotlib.pyplot as plt
+except
+    installRequirement("matplotlib")
+    import matplotlib.pyplot as plt
+
+#The assumption is that the user already has the necessary libraries, as such there is not need to try to install them
+"""
+
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
+
+#Import the Create_App platform from AIdashboard
 from AIdashboard import create_app
-
-
 
 
 def load_data(file_path="ai_student_impact_dataset.csv"):
@@ -79,6 +108,7 @@ def feature_engineering(df):
     #Please add more if needed
     
     df['gpaBeforeVsAfter'] = df['Pre_Semester_GPA'] - df['Post_Semester_GPA']
+    print(df[['gpaBeforeVsAfter','Pre_Semester_GPA', 'Post_Semester_GPA']])
 
 def plot_major_vs_gpa(df):
     #Bar chart: Major_Category vs Average Post_Semester_GPA.
@@ -144,5 +174,7 @@ def main():
 if __name__ == "__main__":
     df = main()
 
+    #Create an app using the external class, this creates a dashboard in debug mode so values can be edited a redrawn as needed
     app = create_app(df)
     app.run(debug=True)
+
