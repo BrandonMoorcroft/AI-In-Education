@@ -233,21 +233,19 @@ def create_app(df):
         Input("year-filter", "value")
     ]
  )
+
+
+ #Run the update dashboard based on the callback being run
  def update_dashboard(selected_major, selected_year):
 
     filtered_df = df.copy()
 
     if selected_major is not None:
-        filtered_df = filtered_df[
-            filtered_df["Major_Category"] == selected_major
-        ]
+        filtered_df = filtered_df[filtered_df["Major_Category"] == selected_major]  
 
     if selected_year is not None:
-        filtered_df = filtered_df[
-            filtered_df["Year_of_Study"] == selected_year
-        ]
-
-  
+        filtered_df = filtered_df[filtered_df["Year_of_Study"] == selected_year]
+     
     student_count = len(filtered_df)
 
     avg_gpa = filtered_df["Post_Semester_GPA"].mean()
@@ -344,6 +342,8 @@ def create_app(df):
         }
     )
 
+   #Cards used to display running information regarding the selection
+
     students_card = [
         html.H3("Total Students"),
         html.H2(f"{student_count}")
@@ -370,6 +370,24 @@ def create_app(df):
         )
     ]
 
+
+"""
+Callbacks to remove the bar chart when major is selected and to remove the line chart when year is selected
+
+  	@app.callback(Output("bar-chart", "figure"), Input("major-filter", "value"))
+	def toggleBar(selected_major):
+		if selected_major is not None:
+			return {"display": "none"}
+		return {"display":"block"}
+
+	@app.callback(Output("line-chart", "figure"), Input("year-filter", "value"))
+	 def toggleLine(selected_year):
+		 if selected_year is not None:
+			 return {"display":"none"}
+		 return{"display":"block"}
+
+"""
+
     return (
         students_card,
         gpa_card,
@@ -380,4 +398,5 @@ def create_app(df):
         pie_fig,
         box_fig
     )
+  
  return app
