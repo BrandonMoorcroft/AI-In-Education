@@ -7,13 +7,13 @@
 #per csv basis. Adjusting tools as needed.                  #
 #-----------------------------------------------------------#
 
-"""
+
 #In a case where someone does not have the required libraries installed, uncomment this code
 import subprocess
 import sys
 
 def installRequirement(package):
-      subprocess.check_call([sys.executable, "-m", "pip", "install", package]
+      subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 try:
     import pandas as pd 
@@ -29,7 +29,7 @@ except ImportError:
 
 try:
     import matplotlib.pyplot as plt
-except
+except:
     installRequirement("matplotlib")
     import matplotlib.pyplot as plt
 
@@ -39,6 +39,8 @@ except
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
+
+"""
 
 #Import the Create_App platform from AIdashboard
 from AIdashboard import create_app
@@ -148,8 +150,8 @@ def plot_burnout_risk_distribution(df):
 def plot_use_case(df):
       #Pie Chart: Priamry use Case for AI
       
-      labels = df['Primary_Use_Case'.value_counts().index
-      sizes = df['Primary_Use_Case'.value_counts().values
+      labels = df['Primary_Use_Case'].value_counts().index
+      sizes = df['Primary_Use_Case'].value_counts().values
       fig = px.pie(
             labels=labels,
             values=sizes,

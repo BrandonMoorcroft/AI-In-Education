@@ -278,6 +278,7 @@ def create_app(df):
         color="Post_Semester_GPA",
         color_continuous_scale="Blues"
     )
+    
 
     # --------------------------------------------------
     # Line Chart
@@ -371,23 +372,6 @@ def create_app(df):
     ]
 
 
-"""
-Callbacks to remove the bar chart when major is selected and to remove the line chart when year is selected
-
-  	@app.callback(Output("bar-chart", "figure"), Input("major-filter", "value"))
-	def toggleBar(selected_major):
-		if selected_major is not None:
-			return {"display": "none"}
-		return {"display":"block"}
-
-	@app.callback(Output("line-chart", "figure"), Input("year-filter", "value"))
-	 def toggleLine(selected_year):
-		 if selected_year is not None:
-			 return {"display":"none"}
-		 return{"display":"block"}
-
-"""
-
     return (
         students_card,
         gpa_card,
@@ -400,3 +384,5 @@ Callbacks to remove the bar chart when major is selected and to remove the line 
     )
   
  return app
+
+
