@@ -33,14 +33,6 @@ except:
     installRequirement("matplotlib")
     import matplotlib.pyplot as plt
 
-#The assumption is that the user already has the necessary libraries, as such there is not need to try to install them
-"""
-
-import pandas as pd
-import plotly.express as px
-import matplotlib.pyplot as plt
-
-"""
 
 #Import the Create_App platform from AIdashboard
 from AIdashboard import create_app
@@ -107,7 +99,6 @@ def calculate_statistics(df):
 
 def feature_engineering(df):
     #Add a feature to the data frame - specifically the difference between GPA pre and post semester
-    #Please add more if needed
     
     df['gpaBeforeVsAfter'] = df['Pre_Semester_GPA'] - df['Post_Semester_GPA']
     print(df[['gpaBeforeVsAfter','Pre_Semester_GPA', 'Post_Semester_GPA']])
@@ -181,12 +172,12 @@ def main():
     calculate_statistics(df)
 
     #Create Plots as needed
-
+    #Only generates if the user inputs a value appropriate otherwise will continue asking
     while True:
         userInput = input("Would you like to make graphs? -> ").strip.lower()
 
         if userInput in allowedResponse:
-            
+
             if userInput == allowedResponse[0]:
                 print("Generating Graphs")
 
