@@ -1,4 +1,4 @@
-# Data-Analytics-Project-AI-Impact
+# Ai-In-Education
 A python program that can be used to create a dashboard and also host a set of important data; pertaining to the use of AI in schools at the university level. 
 
 ## Final Project - Github Repository
