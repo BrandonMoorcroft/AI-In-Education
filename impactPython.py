@@ -169,6 +169,8 @@ def plot_study_hours_spread(df):
 def main():
     #Main: Run Main code
 
+    allowedResponse = {"y","n"}
+
     #Load the dataset, check if successful
     df = load_data()
     print(f"Original dataset size: {len(df)} rows")
@@ -179,11 +181,29 @@ def main():
     calculate_statistics(df)
 
     #Create Plots as needed
-    plot_major_vs_gpa(df)
-    plot_ai_hours_trend(df)
-    plot_burnout_risk_distribution(df)
-    plot_study_hours_spread(df)
-    plot_use_case(df)
+
+    while True:
+        userInput = input("Would you like to make graphs? -> ").strip.lower()
+
+        if userInput in allowedResponse:
+            
+            if userInput == allowedResponse[0]:
+                print("Generating Graphs")
+
+                plot_major_vs_gpa(df)
+                plot_ai_hours_trend(df)
+                plot_burnout_risk_distribution(df)
+                plot_study_hours_spread(df)
+                plot_use_case(df)
+
+                break
+
+            elif userInput == allowedResponse[1]:
+                break
+
+        else:
+            print("Invalid")
+
       
     return df
 
